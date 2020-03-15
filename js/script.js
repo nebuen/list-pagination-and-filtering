@@ -17,7 +17,11 @@ FSJS project 2 - List Filter and Pagination
    scoped to that function.
 ***/
 
-
+// Get the 'ul' list of student and store it to 'studentList' using this variable to manipulate the DOM
+// number of items to show on page which is 10.
+const studentList = document.querySelectorAll('.student-item');
+console.log(studentList.length);
+const itemPerPage = 10;
 
 
 /*** 
@@ -34,7 +38,9 @@ FSJS project 2 - List Filter and Pagination
        that will be passed into the parens later when you call or 
        "invoke" the function 
 ***/
-
+const showPage = (list, page) => {
+   
+}
 
 
 
