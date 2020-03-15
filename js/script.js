@@ -20,7 +20,7 @@ FSJS project 2 - List Filter and Pagination
 // Get the 'ul' list of student and store it to 'studentList' using this variable to manipulate the DOM
 // number of items to show on page which is 10.
 const studentList = document.querySelectorAll('.student-item');
-console.log(studentList.length);
+// console.log(studentList.length);
 const itemPerPage = 10;
 
 
@@ -39,9 +39,19 @@ const itemPerPage = 10;
        "invoke" the function 
 ***/
 const showPage = (list, page) => {
-   
+   start = (page * itemPerPage) - itemPerPage;
+   end = page * itemPerPage;
+   listOfStudents = [];
+   for(let i = 0; i < list.length; i += 1){
+      if (i >= start && i < end){
+         listOfStudents.push(list[i]);
+      }else {
+         break;
+      }
+   }
+   return listOfStudents;
 }
-
+console.log(showPage(studentList, 1));
 
 
 /*** 
