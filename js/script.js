@@ -45,20 +45,20 @@ const showPage = (list, page) => {
    for(let i = 0; i < list.length; i += 1){
       if (i >= start && i < end){
          listOfStudents.push(list[i]);
-      }else {
-         break;
       }
    }
    return listOfStudents;
 }
-console.log(showPage(studentList, 1));
-
+console.log(showPage(studentList, 6));
+console.log(studentList.length);
 
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
 ***/
+const appendPageLinks = list => {
 
+}
 
 
 
