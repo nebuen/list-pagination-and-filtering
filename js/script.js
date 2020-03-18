@@ -6,22 +6,12 @@ FSJS project 2 - List Filter and Pagination
 // Study guide for this project - https://drive.google.com/file/d/1OD1diUsTMdpfMDv677TfL1xO2CEkykSz/view?usp=sharing
 
 
-/*** 
-   Add your global variables that store the DOM elements you will 
-   need to reference and/or manipulate. 
-   
-   But be mindful of which variables should be global and which 
-   should be locally scoped to one of the two main functions you're 
-   going to create. A good general rule of thumb is if the variable 
-   will only be used inside of a function, then it can be locally 
-   scoped to that function.
-***/
-
 // Get the 'ul' list of student and store it to 'studentList' using this variable to manipulate the DOM
 // number of items to show on page which is 10.
 const studentList = document.querySelectorAll('.student-item');
 // console.log(studentList.length);
 const itemPerPage = 10;
+let pages = 0;
 
 
 /*** 
@@ -49,18 +39,48 @@ const showPage = (list, page) => {
    }
    return listOfStudents;
 }
-console.log(showPage(studentList, 6));
-console.log(studentList.length);
+// console.log(showPage(studentList, 6));
+// console.log(studentList.length);
 
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
 ***/
-const appendPageLinks = list => {
-
+const appendPageLinks = (list) => {
+   //determine how many pages needed base on number of students
+   for(let i = 0; i < list.length; i += 9){
+      pages += 1;
+   }
+   let div = document.createElement('DIV');
+   div.className = "pagination";
+   let div_page = document.querySelector('.page');
+   div_page.appendChild(div);
+   let ul = document.createElement('UL');
+   div.appendChild(ul);
+   let a = document.getElementsByTagName('a');
+   
+   for(let i = 0; i < pages; i += 1){
+      let li = document.createElement('LI');
+    
+      let a = document.createElement('A');
+      a.href = '#';
+      console.log(pages[0]);
+      a.innerHTML = i + 1;
+      li.appendChild(a);
+      a.addEventListener('click', showPage(list, pages));
+      ul.appendChild(li);
+      for(let i = 0; i < div.length; i += 1){
+         a[i].classList.remove("active");
+      }
+      console.log(li.childNodes);
+      a.event.target.className = "active";
+      // li.event.target = li.classList.add('active');
+   }
+   
+   
 }
 
 
-
-
+console.log(appendPageLinks(studentList));
+console.log('pages: ' + pages);
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
