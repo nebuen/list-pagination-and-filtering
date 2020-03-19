@@ -9,9 +9,8 @@ FSJS project 2 - List Filter and Pagination
 // Get the 'ul' list of student and store it to 'studentList' using this variable to manipulate the DOM
 // number of items to show on page which is 10.
 const studentList = document.querySelectorAll('.student-item');
-// console.log(studentList.length);
 const itemPerPage = 10;
-let pages = 0;
+
 
 
 /*** 
@@ -31,21 +30,22 @@ let pages = 0;
 const showPage = (list, page) => {
    start = (page * itemPerPage) - itemPerPage;
    end = page * itemPerPage;
-   listOfStudents = [];
    for(let i = 0; i < list.length; i += 1){
       if (i >= start && i < end){
-         listOfStudents.push(list[i]);
+         list[i].style.display = '';
+      } else {
+         list[i].style.display = 'none';
       }
    }
-   return listOfStudents;
 }
-console.log(showPage(studentList, 1));
+
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
 ***/
 const appendPageLinks = (list) => {
    //determine how many pages needed base on number of students
+   let pages = 0;
    for(let i = 0; i < list.length; i += 9){
       pages += 1;
    }
@@ -67,15 +67,6 @@ const appendPageLinks = (list) => {
       a.innerHTML = i + 1;
       li.appendChild(a);
       ul.appendChild(li);
-      // a.addEventListener('click', function(e){
-      //    showPage(list, pages);
-      //    e.target.className ='active';
-         
-      // });
-      // console.log(li.childNodes[0]);
-      // const event = a.target;
-      // event.classList.add('active');
-      // li.event.target = li.classList.add('active');
    }
    //get all anchor tag then add class 'active' on the first anchor tag only
    a = document.querySelectorAll('div.pagination ul li a');
@@ -88,14 +79,12 @@ const appendPageLinks = (list) => {
             a[j].classList.remove('active');
          }
          e.target.className = 'active';
+         showPage(list, a[i].innerHTML);
       });
    }
    
    
    
 }
-
-
-console.log(appendPageLinks(studentList));
-console.log('pages: ' + pages);
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
+showPage(studentList, 1);
+appendPageLinks(studentList);
